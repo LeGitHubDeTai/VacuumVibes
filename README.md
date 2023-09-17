@@ -36,7 +36,7 @@ SITE_URL=https://exemple.com
 Une fois l'URL définie, exécutez le script principal. Il parcourra le site WordPress, téléchargera tous les contenus et les organisera dans un format statique approprié.
 
 ```sh
-npm start -- --site_url=https://exemple.com
+npm start
 ```
 
 Le script téléchargera le contenu du site, le convertira en fichiers statiques et les stockera dans le dossier "out".
@@ -46,6 +46,8 @@ Le script téléchargera le contenu du site, le convertira en fichiers statiques
 ## Avertissement Légal 📜
 
 Ce projet est proposé à des fins éducatives et personnelles. Vous êtes responsable de l'utilisation que vous en faites. Assurez-vous de respecter les droits d'auteur, les conditions d'utilisation et les lois locales lors de l'utilisation de ce logiciel. L'auteur et les contributeurs de ce projet déclinent toute responsabilité en cas d'utilisation abusive ou illégale du logiciel.
+
+De plus, veuillez noter que l'utilisation de ce logiciel doit être effectuée uniquement sur un site Web dont vous êtes propriétaire ou pour lequel vous avez obtenu une autorisation explicite du propriétaire. Il est de votre responsabilité de vous conformer aux politiques et aux droits de propriété intellectuelle du site Web que vous souhaitez convertir en site statique.
 
 ## Contributeurs 👥
 
