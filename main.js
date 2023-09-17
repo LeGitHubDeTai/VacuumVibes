@@ -100,6 +100,10 @@ function escapeRegExp(string) {
 // Fonction pour télécharger une ressource
 async function downloadResource(resourceUrl, localPath, step) {
     try {
+        if(resourceUrl.endsWith(')') == true){
+            resourceUrl = resourceUrl.slice(0, -1);
+        }
+
         const response = await axios.get(resourceUrl, { responseType: 'arraybuffer' });
 
         // Nettoyez et ajustez le chemin local avant d'écrire sur le disque
