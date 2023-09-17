@@ -1,14 +1,14 @@
-# Projet de Transformation de Site WordPress en Site Statique
+# VacuumVibes 🌐
 
-## Avertissement
+## Avertissement ⚠️
 
 Ce projet a été créé dans le but spécifique de convertir un site WordPress en un site statique. Il est destiné à un usage éducatif et/ou personnel. L'utilisation de ce projet pour extraire des sites Web sans autorisation préalable peut enfreindre les droits d'auteur et les conditions d'utilisation des sites Web. Assurez-vous toujours de respecter les droits d'auteur et les lois locales lors de l'utilisation de ce logiciel.
 
-## Description
+## Description 📄
 
 Ce projet vise à fournir un ensemble d'outils et de scripts pour transformer un site Web WordPress en un site Web statique. Il permet de télécharger le contenu du site Web, y compris les pages, les images et les fichiers, puis de les convertir en fichiers HTML, CSS, JavaScript, etc., qui peuvent être hébergés sur un serveur Web statique.
 
-## Fonctionnement
+## Fonctionnement 🚀
 
 1. **Prérequis** : Avant d'utiliser ce projet, assurez-vous d'avoir installé Node.js sur votre ordinateur.
 
@@ -39,14 +39,14 @@ Le script téléchargera le contenu du site, le convertira en fichiers statiques
 
 5. **Téléchargement de l'Archive** : Vous pouvez télécharger une archive ZIP contenant les fichiers statiques en utilisant l'action GitHub. Activez le workflow "Execute Code and Create Archive" dans l'onglet "Actions" de votre dépôt et suivez les instructions pour spécifier l'URL du site WordPress.
 
-## Avertissement Légal
+## Avertissement Légal 📜
 
 Ce projet est proposé à des fins éducatives et personnelles. Vous êtes responsable de l'utilisation que vous en faites. Assurez-vous de respecter les droits d'auteur, les conditions d'utilisation et les lois locales lors de l'utilisation de ce logiciel. L'auteur et les contributeurs de ce projet déclinent toute responsabilité en cas d'utilisation abusive ou illégale du logiciel.
 
-## Contributeurs
+## Contributeurs 👥
 
 - [Tai Tetsuyuki](https://github.com/LeGitHubDeTai) - Créateur du Projet
 
-## Licence
+## Licence 📝
 
 Ce projet est sous licence MIT - voir le fichier [LICENSE](LICENSE) pour plus de détails.
