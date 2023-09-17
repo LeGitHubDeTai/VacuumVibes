@@ -103,6 +103,9 @@ async function downloadResource(resourceUrl, localPath, step) {
         if(resourceUrl.endsWith(')') == true){
             resourceUrl = resourceUrl.slice(0, -1);
         }
+        if(localPath.endsWith(')') == true){
+            localPath = localPath.slice(0, -1);
+        }
 
         const response = await axios.get(resourceUrl, { responseType: 'arraybuffer' });
 
