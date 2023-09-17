@@ -29,9 +29,6 @@ jobs:
       run: |
         node main.js
 
-    - name: Créer une archive ZIP
-      run: zip -r out.zip out
-
     - name: Définir l'archive ZIP comme artefact
       uses: actions/upload-artifact@v2
       with:
