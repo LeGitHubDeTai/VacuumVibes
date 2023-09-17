@@ -1,0 +1,39 @@
+name: Execute Code
+
+on:
+  workflow_dispatch:
+    inputs:
+      site_url:
+        description: 'URL du site à télécharger'
+        required: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout du code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: Installer les dépendances
+      run: npm install
+
+    - name: Exécuter le script
+      env:
+        SITE_URL: ${{ github.event.inputs.site_url }}
+      run: |
+        node main.js
+
+    - name: Créer une archive ZIP
+      run: zip -r out.zip out
+
+    - name: Définir l'archive ZIP comme artefact
+      uses: actions/upload-artifact@v2
+      with:
+        name: out
+        path: out.zip
