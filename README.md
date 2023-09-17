@@ -21,6 +21,10 @@ cd VacuumVibes
 
 3. **Installation des Dépendances** : Installez les dépendances nécessaires en exécutant la commande suivante :
 
+```sh
+npm install
+```
+
 4. **Exécution** : Exécutez le script principal en spécifiant l'URL du site WordPress que vous souhaitez convertir en site statique.
 
 Avant d'exécuter le script, vous devez définir l'URL de votre site WordPress. Pour cela, ajoutez l'URL à la variable SITE_URL dans le fichier .env.
