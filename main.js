@@ -19,7 +19,7 @@ if (!siteUrl) {
 }
 const baseUrl = new URL(siteUrl);
 
-const outputDirectory = 'out'; // Dossier de sortie
+const outputDirectory = process.env.OUT || 'out'; // Dossier de sortie
 
 // Fonction pour supprimer le dossier "out" s'il existe
 async function deleteOutputDirectory() {
@@ -115,7 +115,7 @@ async function downloadResource(resourceUrl, localPath, step) {
             cleanFileName(path.basename(localPath), resourceUrl)
         );
 
-        if (cleanedLocalPath === 'out.html') {
+        if (cleanedLocalPath === `${outputDirectory}.html`) {
             return;
         }
 
