@@ -100,10 +100,10 @@ function escapeRegExp(string) {
 // Fonction pour télécharger une ressource
 async function downloadResource(resourceUrl, localPath, step) {
     try {
-        if(resourceUrl.endsWith(')') == true){
+        if (resourceUrl.endsWith(')') == true) {
             resourceUrl = resourceUrl.slice(0, -1);
         }
-        if(localPath.endsWith(')') == true){
+        if (localPath.endsWith(')') == true) {
             localPath = localPath.slice(0, -1);
         }
 
@@ -142,8 +142,10 @@ async function replaceAllLinks(filePath, linkToReplace, step) {
     try {
         const fileExtension = path.extname(filePath).toLowerCase();
 
-        // Vérifiez si le fichier est une image ou une vidéo (vous pouvez étendre cette liste)
-        if (fileExtension === '.jpg' || fileExtension === '.jpeg' || fileExtension === '.png' || fileExtension === '.gif' || fileExtension === '.mp4' || fileExtension === '.avi') {
+        const IMAGE_VIDEO_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.gif', '.mp4', '.avi'];
+
+        // Vérifiez si le fichier est une image ou une vidéo
+        if (IMAGE_VIDEO_EXTENSIONS.includes(fileExtension)) {
             console.log(`Le fichier ${filePath} est une image ou une vidéo. Le remplacement de liens est ignoré.`);
             return; // Ne faites rien si c'est une image ou une vidéo
         }
