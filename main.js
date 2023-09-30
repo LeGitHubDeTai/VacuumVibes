@@ -11,6 +11,19 @@ const fs = require('fs').promises;
 const path = require('path');
 require('dotenv').config(); // Charger les variables d'environnement depuis .env
 
+async function checkIfExists(path) {
+    try {
+        await fs.access(path);
+        return true;
+    } catch (error) {
+        if (error.code === 'ENOENT') {
+            return false;
+        } else {
+            console.error(`Une erreur s'est produite : ${error.message}`);
+        }
+    }
+}
+
 // Récupérer l'URL du site à partir de la variable d'environnement
 const siteUrl = process.env.SITE_URL;
 if (!siteUrl) {
@@ -107,8 +120,6 @@ async function downloadResource(resourceUrl, localPath, step) {
             localPath = localPath.slice(0, -1);
         }
 
-        const response = await axios.get(resourceUrl, { responseType: 'arraybuffer' });
-
         // Nettoyez et ajustez le chemin local avant d'écrire sur le disque
         const cleanedLocalPath = path.join(
             path.dirname(localPath),
@@ -119,7 +130,12 @@ async function downloadResource(resourceUrl, localPath, step) {
             return;
         }
 
-        await fs.writeFile(cleanedLocalPath, response.data);
+        if (await checkIfExists(`${outputDirectory}.html`) == false) {
+            const response = await axios.get(resourceUrl, { responseType: 'arraybuffer' });
+
+            await fs.writeFile(cleanedLocalPath, response.data);
+        }
+
         console.log(`\x1b[34mÉtape ${step}:\x1b[0m Téléchargé : ${cleanedLocalPath}`);
     } catch (error) {
         console.error(`Erreur lors du téléchargement de ${resourceUrl} : ${error.message}`);
@@ -142,7 +158,7 @@ async function replaceAllLinks(filePath, linkToReplace, step) {
     try {
         const fileExtension = path.extname(filePath).toLowerCase();
 
-        const IMAGE_VIDEO_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.gif', '.mp4', '.avi'];
+        const IMAGE_VIDEO_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.gif', '.mp4', '.avi', '.svg'];
 
         // Vérifiez si le fichier est une image ou une vidéo
         if (IMAGE_VIDEO_EXTENSIONS.includes(fileExtension)) {
@@ -153,8 +169,9 @@ async function replaceAllLinks(filePath, linkToReplace, step) {
         let content = await fs.readFile(filePath, 'utf-8');
 
         // Utilisez une expression régulière pour remplacer tous les liens correspondants
-        const websiteUrl = new URL(siteUrl);
-        const regex = new RegExp(escapeRegExp(websiteUrl.origin + linkToReplace), 'g');
+        const escapedLinkToReplace = escapeRegExp(linkToReplace);
+        const regex = new RegExp(`${escapedLinkToReplace}(\\?\\S*)?`, 'g'); // Correspond également aux paramètres de requête
+
         content = content.replace(regex, linkToReplace);
 
         await fs.writeFile(filePath, content, 'utf-8');
