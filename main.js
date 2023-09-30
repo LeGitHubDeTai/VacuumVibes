@@ -195,6 +195,7 @@ async function processFiles(outputDir, links) {
                 // Si c'est un fichier, effectuez le traitement
                 const filePath = entryPath;
                 const linksInFile = await scanLink(filePath);
+                var current = 1;
 
                 for (const linkInFile of linksInFile) {
                     const linkUrl = new URL(linkInFile);
@@ -203,7 +204,8 @@ async function processFiles(outputDir, links) {
                         filteredLinks.push(linkUrl.href);
                         const newRelativePath = path.join(outputDir, linkUrl.pathname);
                         await fs.mkdir(path.dirname(newRelativePath), { recursive: true });
-                        await downloadResource(linkUrl.href, newRelativePath, 9, linksInFile.length, '?');
+                        await downloadResource(linkUrl.href, newRelativePath, 9, linksInFile.length, current);
+                        current++;
                     }
                 }
             } else if (stats.isDirectory()) {
