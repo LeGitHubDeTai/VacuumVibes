@@ -126,7 +126,7 @@ async function downloadResource(resourceUrl, localPath, step) {
             cleanFileName(path.basename(localPath), resourceUrl)
         );
 
-        if (cleanedLocalPath === `${outputDirectory}.html`) {
+        if (`./${cleanedLocalPath}` === `${outputDirectory}.html`) {
             return;
         }
 
