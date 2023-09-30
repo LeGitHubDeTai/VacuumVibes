@@ -204,7 +204,7 @@ async function processFiles(outputDir, links) {
                         filteredLinks.push(linkUrl.href);
                         const newRelativePath = path.join(outputDir, linkUrl.pathname);
                         await fs.mkdir(path.dirname(newRelativePath), { recursive: true });
-                        await downloadResource(linkUrl.href, newRelativePath, 9, linksInFile.length, current + filteredLinks.length);
+                        await downloadResource(linkUrl.href, newRelativePath, 9, linksInFile.length + filteredLinks.length, current + filteredLinks.length);
                         current++;
                     }
                 }
