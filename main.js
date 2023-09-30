@@ -111,7 +111,7 @@ function escapeRegExp(string) {
 }
 
 // Fonction pour télécharger une ressource
-async function downloadResource(resourceUrl, localPath, step) {
+async function downloadResource(resourceUrl, localPath, step, total, current) {
     try {
         if (resourceUrl.endsWith(')') == true) {
             resourceUrl = resourceUrl.slice(0, -1);
@@ -136,7 +136,7 @@ async function downloadResource(resourceUrl, localPath, step) {
             await fs.writeFile(cleanedLocalPath, response.data);
         }
 
-        console.log(`\x1b[34mÉtape ${step}:\x1b[0m Téléchargé : ${cleanedLocalPath}`);
+        console.log(`\x1b[34mÉtape ${step}:\x1b[0m Téléchargé : ${cleanedLocalPath} (${current}/${total})`);
     } catch (error) {
         console.error(`Erreur lors du téléchargement de ${resourceUrl} : ${error.message}`);
     }
@@ -203,7 +203,7 @@ async function processFiles(outputDir, links) {
                         filteredLinks.push(linkUrl.href);
                         const newRelativePath = path.join(outputDir, linkUrl.pathname);
                         await fs.mkdir(path.dirname(newRelativePath), { recursive: true });
-                        await downloadResource(linkUrl.href, newRelativePath, 9);
+                        await downloadResource(linkUrl.href, newRelativePath, 9, linksInFile.length, '?');
                     }
                 }
             } else if (stats.isDirectory()) {
@@ -231,7 +231,7 @@ async function init() {
         console.log(`\x1b[34mÉtape 0:\x1b[0m Dossier "${outputDirectory}" créé.`);
 
         const relativePath = path.join(outputDirectory, 'index.html');
-        await downloadResource(siteUrl, relativePath, 1);
+        await downloadResource(siteUrl, relativePath, 1, 1, 1);
 
         let allLinks = [];
         let newLinks = await processFiles(outputDirectory, allLinks);
