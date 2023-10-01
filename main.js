@@ -169,8 +169,11 @@ async function replaceAllLinks(filePath, linkToReplace, step) {
         let content = await fs.readFile(filePath, 'utf-8');
 
         // Utilisez une expression régulière pour remplacer tous les liens correspondants
-        const escapedLinkToReplace = escapeRegExp(linkToReplace);
-        const regex = new RegExp(`${escapedLinkToReplace}(\\?\\S*)?`, 'g'); // Correspond également aux paramètres de requête
+        // const escapedLinkToReplace = escapeRegExp(linkToReplace);
+        // const regex = new RegExp(`${escapedLinkToReplace}(\\?\\S*)?`, 'g'); // Correspond également aux paramètres de requête
+
+        const websiteUrl = new URL(siteUrl);
+        const regex = new RegExp(escapeRegExp(websiteUrl.origin + linkToReplace), 'g');
 
         content = content.replace(regex, linkToReplace);
 
