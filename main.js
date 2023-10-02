@@ -130,11 +130,11 @@ async function downloadResource(resourceUrl, localPath, step, total, current) {
             return;
         }
 
-        if (await checkIfExists(`${outputDirectory}.html`) == false) {
+        // if (await checkIfExists(`${outputDirectory}.html`) == false) {
             const response = await axios.get(resourceUrl, { responseType: 'arraybuffer' });
 
             await fs.writeFile(cleanedLocalPath, response.data);
-        }
+        // }
 
         console.log(`\x1b[34mÉtape ${step}:\x1b[0m Téléchargé : ${cleanedLocalPath} (${current}/${total})`);
     } catch (error) {
