@@ -241,6 +241,9 @@ async function init() {
         let allLinks = [];
         let newLinks = await processFiles(outputDirectory, allLinks);
 
+        newLinks.push(`${siteUrl}/wp-content/uploads/wdseo_sitemaps/sitemap.xml`);
+        newLinks.push(`${siteUrl}/sitemap.xml`);
+
         while (newLinks.length > 0) {
             if (newLinks.length == 1) {
                 if (newLinks[0] == siteUrl) {
