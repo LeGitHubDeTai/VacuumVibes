@@ -236,9 +236,6 @@ async function init() {
         console.log(`\x1b[34mÉtape 0:\x1b[0m Dossier "${outputDirectory}" créé.`);
 
         const relativePath = path.join(outputDirectory, 'index.html');
-        await downloadResource(`${siteUrl}/sitemap.xml`, path.join(outputDirectory, '/sitemap.xml'), 1, 1, 1);
-        await fs.mkdir(path.join(outputDirectory, '/wp-content/uploads/wdseo_sitemaps'), { recursive: true });
-        await downloadResource(`${siteUrl}/wp-content/uploads/wdseo_sitemaps/sitemap.xml`, path.join(outputDirectory, '/wp-content/uploads/wdseo_sitemaps/sitemap.xml'), 1, 1, 1);
         await downloadResource(siteUrl, relativePath, 1, 1, 1);
         
         let allLinks = [];
